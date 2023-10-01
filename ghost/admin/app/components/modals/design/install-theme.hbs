@@ -1,3 +1,11 @@
+<style>
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles */
+    .set-color-white {
+      color: #ffffff;
+    }
+  }
+</style>
 <div class="modal-content" data-test-modal="install-theme">
     <div class="theme-validation-container">
         <header class="modal-header">
@@ -58,7 +66,7 @@
             {{#if this.validationErrors}}
                 <div>
                     <h2 class="mb0 mt4 f5 fw6">Errors</h2>
-                    <p class="mb2">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
+                    <p class="mb2 set-color-white">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
                 </div>
                 <ul class="pa0">
                 {{#each this.validationErrors as |error|}}

@@ -1,3 +1,11 @@
+<style>
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles */
+    .set-color-white {
+      color: #ffffff;
+    }
+  }
+</style>
 <div class="modal-content" data-test-modal="upload-theme">
     <div class="theme-validation-container">
         <header class="modal-header">
@@ -20,7 +28,7 @@
         <div class="modal-body">
             {{#if this.theme}}
                 {{#if this.hasWarningsOrErrors}}
-                    <p data-test-state="installed-with-notes">
+                    <p data-test-state="installed-with-notes set-color-white">
                         The theme <strong>"{{this.themeName}}"</strong> was installed successfully but we detected some {{if this.validationErrors "errors" "warnings"}}.
                         {{#if this.canActivateTheme}}
                             You are still able to activate and use the theme but it is recommended to fix these {{if this.validationErrors "errors" "warnings"}} before you do so.
@@ -30,7 +38,7 @@
                     {{#if this.validationErrors}}
                         <div>
                             <h2 class="mb0 mt4 f5 fw6">Errors</h2>
-                            <p class="mb2">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
+                            <p class="mb2 set-color-white">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
                         </div>
                         <ul class="pa0">
                         {{#each this.validationErrors as |error|}}
@@ -87,7 +95,7 @@
                 {{#if this.validationErrors}}
                     <div>
                         <h2 class="mb0 mt4 f5 fw6">Errors</h2>
-                        <p class="mb2">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
+                        <p class="mb2 set-color-white ">Highly recommended to fix, functionality <strong>could</strong> be restricted</p>
                     </div>
                     <ul class="pa0">
                     {{#each this.validationErrors as |error|}}

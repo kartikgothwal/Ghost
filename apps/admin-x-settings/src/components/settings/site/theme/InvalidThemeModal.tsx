@@ -3,7 +3,7 @@ import Heading from '../../../../admin-x-ds/global/Heading';
 import List from '../../../../admin-x-ds/global/List';
 import ListItem from '../../../../admin-x-ds/global/ListItem';
 import NiceModal from '@ebay/nice-modal-react';
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useState, useEffect} from 'react';
 import {ConfirmationModalContent} from '../../../../admin-x-ds/global/modal/ConfirmationModal';
 import {ThemeProblem} from '../../../../api/themes';
 
@@ -17,10 +17,31 @@ type FatalError = {
 
 export const ThemeProblemView = ({problem}:{problem: ThemeProblem}) => {
     const [isExpanded, setExpanded] = useState(false);
-
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const handleClick = () => {
         setExpanded(!isExpanded);
     };
+
+    useEffect(() => {
+        // Set up a listener for changes in the color scheme
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Initial setup
+        setIsDarkMode(darkModeMediaQuery.matches);
+
+        // Handle color scheme changes
+        const handleColorSchemeChange = (event: MediaQueryListEvent) => {
+            setIsDarkMode(event.matches);
+        };
+
+        darkModeMediaQuery.addListener(handleColorSchemeChange);
+
+        // Clean up the listener when the component is unmounted
+        return () => {
+            darkModeMediaQuery.removeListener(handleColorSchemeChange);
+        };
+    }, []); 
+
 
     return <ListItem
         title={
@@ -42,7 +63,7 @@ export const ThemeProblemView = ({problem}:{problem: ThemeProblem}) => {
                         <div className='mt-2 px-4 text-[13px] leading-8'>
                             <div dangerouslySetInnerHTML={{__html: problem.details}} className='mb-4' />
                             <Heading level={6}>Affected files:</Heading>
-                            <ul className='mt-1'>
+                            <ul className={`mt-1 ${isDarkMode? 'text-white' : ''}`}>
                                 {problem.failures.map(failure => <li><code>{failure.ref}</code>{failure.message ? `: ${failure.message}` : ''}</li>)}
                             </ul>
                         </div> :
