@@ -1,10 +1,18 @@
+<style>
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles */
+    .set-color-white {
+      color: #ffffff;
+    }
+  }
+</style>
 <div class="modal-content" data-test-modal="delete-snippet">
     <header class="modal-header">
         <h1>Confirm snippet deletion</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
 
-    <div class="modal-body">
+    <div class="modal-body set-color-white">
         <p>
             You're about to delete the "<strong>{{@data.snippet.name}}</strong>" snippet. This is permanent, and will delete the snippet for all staff users. It will <strong>not</strong> change any posts where you’ve used this snippet in the past.
         </p>

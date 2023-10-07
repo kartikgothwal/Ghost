@@ -1,10 +1,19 @@
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles */
+    .set-color-white {
+      color: #ffffff;
+    }
+  }
+</style>
 <div class="modal-content" data-test-modal="update-snippet">
     <header class="modal-header">
         <h1>Update this snippet?</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
 
-    <div class="modal-body">
+    <div class="modal-body set-color-white">
         <p>
             "<strong>{{@data.snippet.name}}</strong>" will be overwritten.
             Don't worry, this will only affect using the snippet in the future.

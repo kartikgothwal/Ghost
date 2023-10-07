@@ -1,10 +1,19 @@
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles */
+    .set-color-white {
+      color: #ffffff;
+    }
+  }
+</style>
 <div class="modal-content" {{on-key "Enter" (perform this.deletePostTask)}}>
     <header class="modal-header">
         <h1>Are you sure you want to delete this {{@data.post.displayName}}?</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
 
-    <div class="modal-body">
+    <div class="modal-body set-color-white">
         <p>
             You're about to delete "<strong>{{@data.post.title}}</strong>".
             This is permanent! We warned you, k?
